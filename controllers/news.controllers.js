@@ -5,8 +5,8 @@ const getNews = (req,res) => {
         order:['createdAt'],
         limit:10
     })
-    news = news.map(({name,image,createdAt}) => ({
-        name,
+    news = news.map(({title,image,createdAt}) => ({
+        name:title,
         image,
         createdAt
     }))
