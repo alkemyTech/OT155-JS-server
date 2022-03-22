@@ -1,7 +1,7 @@
 const News = require('../models/new.js')
 
-const getNews = (req,res) => {
-    const news = News.findAll({
+const getNews = async (req,res) => {
+    const news = await News.findAll({
         order:['createdAt'],
         limit:10
     })
