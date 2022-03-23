@@ -5,6 +5,7 @@ const getNews = async (req,res) => {
         order:['createdAt'],
         limit:10
     })
+    // map news
     news = news.map(({title,image,createdAt}) => ({
         name:title,
         image,
