@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const UserController = require("../controllers/user.controller")
+const userController = require("../controllers/user.controller")
 
 /* GET users listing. */
 router.get("/", function (req, res, next) {
@@ -8,6 +8,6 @@ router.get("/", function (req, res, next) {
 });
 
 
-router.post("/login", UserController.login)
+router.post("/login", userController.login)
 
 module.exports = router;

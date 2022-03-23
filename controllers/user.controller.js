@@ -4,75 +4,62 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const controller = {
-  login: (req, res) => {
+  login: async (req, res) => {
     const params = req.body;
 
     try {
-      const validate_email = validator.isEmpty(params.email);
-      const validate_password = validator.isEmpty(params.password);
+      const validateEmail = validator.isEmpty(params.email);
+      const validatePassword = validator.isEmpty(params.password);
 
-      if (validate_email || validate_password) {
-        return res.status(200).send({
+      if (validateEmail || validatePassword) {
+        const missingDataResponse = res.status(200).json({
           message: "(!) Some data is missing",
           value: false,
         });
+        return missingDataResponse;
       }
 
-      //check if the user exist
-
-      User.findOne({
+      const user = await User.findOne({
         where: {
           email: params.email,
         },
-      })
-        .then((result) => {
-          if (result === null) {
-            console.log("There is no user registered with that email.");
-            return res.status(200).send({
-              message: "There is no user registered with that email.",
-              value: false,
-            });
-          }
+      });
 
-          //note: check encrypted password    if(!bcrypt.compareSync(params.password, result.password))
-
-          if (params.password !== result.password) {
-            console.log("Incorrect password");
-            return res.status(200).send({
-              status: "invalid password",
-              value: false,
-            });
-          } else {
-            const token = jwt.sign(
-              { id: result.id, email: result.email },
-              process.env.TOKEN_KEY,
-              {
-                expiresIn: "2d",
-              }
-            );
-            result.token = token;
-          }
-          const user = {
-            id: result.id,
-            name: result.name,
-            surname: result.surname,
-            email: result.email,
-          };
-          return res.status(200).send({
-            status: "success",
-            value: true,
-            user: user,
-            jwt: result.token,
-          });
-        })
-        .catch((err) => {
-          return console.log(err);
+      if (user === null) {
+        const invalidEmailResponse = res.status(200).json({
+          message: "There is no user registered with that email.",
+          value: false,
         });
+        return invalidEmailResponse;
+      }
+
+      if (params.password !== user.password) {
+        const invalidPasswordResponse = res.status(200).json({
+          status: "invalid password",
+          value: false,
+        });
+        return invalidPasswordResponse;
+      }
+
+      const token = jwt.sign(
+        { id: user.id, email: user.email },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: "2d",
+        }
+      );
+
+      return res.status(200).json({
+        status: "success",
+        value: true,
+        user: user,
+        jwt: token,
+      });
     } catch (err) {
-      console.log(err);
-      return res.status(500).send({
+      const errorResponse = res.status(500).json({
         message: "(!) Something has gone wrong. Check the entries",
       });
+      return errorResponse;
     }
   },
 };
