@@ -13,7 +13,7 @@ User.init(
   {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
+    email: { type: DataTypes.STRING, allowNull: false, unique: true },
     image: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
     password: DataTypes.STRING,
     roleId: DataTypes.INTEGER,
@@ -23,7 +23,7 @@ User.init(
   },
   {
     sequelize,
-    modelName: "user",
+    modelName: "User",
   }
 );
 
