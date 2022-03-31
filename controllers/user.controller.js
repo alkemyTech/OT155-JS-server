@@ -33,7 +33,7 @@ const controller = {
         return invalidEmailResponse;
       }
 
-      if (params.password !== user.password) {
+      if (!bcrypt.compareSync(params.password, user.password)) {
         const invalidPasswordResponse = res.status(500).json({
           status: "invalid password",
           value: false,
