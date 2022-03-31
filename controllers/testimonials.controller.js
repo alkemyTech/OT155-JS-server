@@ -1,25 +1,29 @@
+const { DataTypes } = require("sequelize");
 const db = require("../models");
+const Testimonials = require("../models/testimonials")(db.sequelize, DataTypes);
 
-const testimonials = {
+const testimonialsMethods = {
   createTestimonial: async (req, res) => {
     const { name, image, content } = req.body;
     try {
-      await db.Testimonials.create({
+      const newTestimonial = await Testimonials.create({
         name,
         image,
         content,
-      }).then(function (data) {
-        return res.status(200).json({
-          status: "Success",
-          testimonial: data,
-        });
       });
+      const successfullResponse = res.status(200).json({
+        status: "success",
+        value: true,
+        testimonial: newTestimonial,
+      });
+      return successfullResponse;
     } catch (error) {
-      res.status(400).json({
-        message: "(!) Something has gone wrong. Check the entries",
+      const errorResponse = res.status(400).json({
+        message: "(!) Testimony was not saved",
       });
+      return errorResponse;
     }
   },
 };
 
-module.exports = testimonials;
+module.exports = testimonialsMethods;
