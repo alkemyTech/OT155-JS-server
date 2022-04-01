@@ -30,7 +30,7 @@ const testimonialsMethods = {
       where: { id },
     });
     if (testimonialExist) {
-      Testimonials.destroy({
+      await Testimonials.destroy({
         where: {
           id,
         },
