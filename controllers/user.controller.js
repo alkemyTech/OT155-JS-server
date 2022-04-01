@@ -1,7 +1,7 @@
-const validator = require('validator');
-const User = require('../models/user');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const validator = require("validator");
+const User = require("../models/user");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const controller = {
   login: async (req, res) => {
@@ -13,7 +13,7 @@ const controller = {
 
       if (validateEmail || validatePassword) {
         const missingDataResponse = res.status(400).json({
-          message: '(!) Some data is missing',
+          message: "(!) Some data is missing",
           value: false,
         });
         return missingDataResponse;
@@ -27,7 +27,7 @@ const controller = {
 
       if (user === null) {
         const invalidEmailResponse = res.status(404).json({
-          message: 'There is no user registered with that email.',
+          message: "There is no user registered with that email.",
           value: false,
         });
         return invalidEmailResponse;
@@ -35,7 +35,7 @@ const controller = {
 
       if (!bcrypt.compareSync(params.password, user.password)) {
         const invalidPasswordResponse = res.status(400).json({
-          status: 'invalid password',
+          status: "invalid password",
           value: false,
         });
         return invalidPasswordResponse;
@@ -45,19 +45,19 @@ const controller = {
         { id: user.id, email: user.email },
         process.env.TOKEN_KEY,
         {
-          expiresIn: '2d',
+          expiresIn: "2d",
         }
       );
 
       return res.status(200).json({
-        status: 'success',
+        status: "success",
         value: true,
         user: user,
         jwt: token,
       });
     } catch (err) {
       const errorResponse = res.status(500).json({
-        message: '(!) Something has gone wrong. Check the entries',
+        message: "(!) Something has gone wrong. Check the entries",
       });
       return errorResponse;
     }
@@ -79,7 +79,7 @@ const controller = {
         validatePassword
       ) {
         const missingDataResponse = res.status(400).json({
-          message: '(!) Some data is missing',
+          message: "(!) Some data is missing",
           value: false,
         });
         return missingDataResponse;
@@ -92,7 +92,7 @@ const controller = {
 
       if (user !== null) {
         const alreadyExistsResponse = res.status(400).json({
-          message: 'Already exists an user with that email.',
+          message: "Already exists an user with that email.",
           value: false,
         });
         return alreadyExistsResponse;
@@ -112,11 +112,11 @@ const controller = {
         { id: newUser.id, email: params.email },
         process.env.TOKEN_KEY,
         {
-          expiresIn: '2h',
+          expiresIn: "2h",
         }
       );
       const successfullResponse = res.status(200).json({
-        status: 'success',
+        status: "success",
         value: true,
         user: newUser,
         jwt: token,
@@ -124,27 +124,9 @@ const controller = {
       return successfullResponse;
     } catch (err) {
       const errorResponse = res.status(500).json({
-        message: '(!) Something has gone wrong. Check the entries',
+        message: "(!) Something has gone wrong. Check the entries",
       });
       return errorResponse;
-    }
-  },
-  getUser: async (req, res) => {
-    const { id } = req.params;
-    try {
-      const user = await User.findByPk(id, {
-        attributes: { exclude: ['password'] },
-      });
-
-      if (user) {
-        res.json(user);
-      } else {
-        res.status(404).json({
-          msg: `There is no user with the id: ${id}`,
-        });
-      }
-    } catch (error) {
-      console.log(error);
     }
   },
 };
