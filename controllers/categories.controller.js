@@ -4,13 +4,22 @@ const db = require('../models')
 const Categories = require("../models/categories")(db.sequelize,DataTypes)
 
 const controller = {
-    deleteCategorie: async(req,res) => {
+    deleteCategory: async(req,res) => {
+
+        try{
         const { id } = req.params;
-        const deleteCategorie = await Categories.destroy({
+        const deleteCategory = await Categories.destroy({
             where:{
                 id: id
             }
         })
+        }catch(error){
+            res.status(404).json({
+                msg: `Category does not exist`
+            })
+        }
+
+
     }
 }
 
