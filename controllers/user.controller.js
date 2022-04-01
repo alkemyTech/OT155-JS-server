@@ -12,7 +12,7 @@ const controller = {
       const validatePassword = validator.isEmpty(params.password);
 
       if (validateEmail || validatePassword) {
-        const missingDataResponse = res.status(500).json({
+        const missingDataResponse = res.status(400).json({
           message: "(!) Some data is missing",
           value: false,
         });
@@ -34,7 +34,7 @@ const controller = {
       }
 
       if (!bcrypt.compareSync(params.password, user.password)) {
-        const invalidPasswordResponse = res.status(500).json({
+        const invalidPasswordResponse = res.status(400).json({
           status: "invalid password",
           value: false,
         });
@@ -78,7 +78,7 @@ const controller = {
         validateEmail ||
         validatePassword
       ) {
-        const missingDataResponse = res.status(500).json({
+        const missingDataResponse = res.status(400).json({
           message: "(!) Some data is missing",
           value: false,
         });
@@ -91,7 +91,7 @@ const controller = {
       });
 
       if (user !== null) {
-        const alreadyExistsResponse = res.status(500).json({
+        const alreadyExistsResponse = res.status(400).json({
           message: "Already exists an user with that email.",
           value: false,
         });
