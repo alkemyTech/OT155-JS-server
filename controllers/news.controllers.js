@@ -14,7 +14,6 @@ const getNews = async (req,res) => {
     res.json(news)
 }
 
-
 module.exports = {
     getNews,
 }
