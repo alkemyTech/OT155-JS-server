@@ -1,6 +1,4 @@
-const { DataTypes } = require("sequelize");
-const db = require("../models/");
-const Members = require("../models/members")(db.sequelize, DataTypes);
+const Members = require("../models").Members;
 
 const controller = {
   getAllMembers: async (req, res) => {
