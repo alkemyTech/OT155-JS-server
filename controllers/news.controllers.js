@@ -1,5 +1,7 @@
 const validator = require("validator");
-const Entrie = require("../models/entries.js");
+const { DataTypes } = require("sequelize");
+const db = require("../models");
+const Entrie = require("../models/entries.js")(db.sequelize, DataTypes);
 const News = require("../models/new.js");
 
 const getNews = async (req, res) => {
