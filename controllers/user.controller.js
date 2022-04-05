@@ -1,6 +1,5 @@
 const validator = require("validator");
 const User = require("../models/user");
-const { v4: uuidv4 } = require("uuid");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -13,7 +12,7 @@ const controller = {
       const validatePassword = validator.isEmpty(params.password);
 
       if (validateEmail || validatePassword) {
-        const missingDataResponse = res.status(200).json({
+        const missingDataResponse = res.status(400).json({
           message: "(!) Some data is missing",
           value: false,
         });
@@ -27,15 +26,15 @@ const controller = {
       });
 
       if (user === null) {
-        const invalidEmailResponse = res.status(200).json({
+        const invalidEmailResponse = res.status(404).json({
           message: "There is no user registered with that email.",
           value: false,
         });
         return invalidEmailResponse;
       }
 
-      if (params.password !== user.password) {
-        const invalidPasswordResponse = res.status(200).json({
+      if (!bcrypt.compareSync(params.password, user.password)) {
+        const invalidPasswordResponse = res.status(400).json({
           status: "invalid password",
           value: false,
         });
@@ -79,7 +78,7 @@ const controller = {
         validateEmail ||
         validatePassword
       ) {
-        const missingDataResponse = res.status(200).json({
+        const missingDataResponse = res.status(400).json({
           message: "(!) Some data is missing",
           value: false,
         });
@@ -92,35 +91,30 @@ const controller = {
       });
 
       if (user !== null) {
-        const alreadyExistsResponse = res.status(200).json({
+        const alreadyExistsResponse = res.status(400).json({
           message: "Already exists an user with that email.",
           value: false,
         });
         return alreadyExistsResponse;
       }
 
-      const id = uuidv4();
       const encryptedPassword = bcrypt.hashSync(params.password, 10);
 
-      const token = jwt.sign(
-        { id: id, email: params.email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
-      );
-      const date = new Date();
       const newUser = await User.create({
-        id: id,
         firstName: params.firstName,
         lastName: params.lastName,
         email: params.email,
         password: encryptedPassword,
         image: null,
         roleId: 1,
-        createdAt: date,
-        updatedAt: date,
       });
+      const token = jwt.sign(
+        { id: newUser.id, email: params.email },
+        process.env.TOKEN_KEY,
+        {
+          expiresIn: "2h",
+        }
+      );
       const successfullResponse = res.status(200).json({
         status: "success",
         value: true,
