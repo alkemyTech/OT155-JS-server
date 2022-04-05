@@ -11,4 +11,6 @@ router.get("/", function (req, res, next) {
 router.post("/login", userController.login)
 router.post("/register", userController.register)
 
+
+router.delete("/:id", userController.delete)
 module.exports = router;
