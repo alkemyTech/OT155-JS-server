@@ -1,6 +1,4 @@
-const {DataTypes} = require('sequelize')
-const db = require('../models/')
-const News = require('../models/new.js')(db.sequelize,DataTypes)
+const News = require('../models').News
 
 
 const getNews = async (req,res) => {

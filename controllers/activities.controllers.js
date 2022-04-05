@@ -1,6 +1,8 @@
+
 const {DataTypes} = require('sequelize')
 const db = require('../models/')
 const Activities = require("../models/activities.js")(db.sequelize,DataTypes);
+
 const validator = require("validator");
 
 const createActivitie = async (req, res) => {
