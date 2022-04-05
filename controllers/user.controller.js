@@ -1,9 +1,23 @@
 const validator = require("validator");
-const User = require("../models/user");
+const User = require("../models").Users;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const controller = {
+  getUser: async (req,res) => {
+    try{
+      const users = await User.findAll()
+      return res.json({
+        status: "success",
+        value: true,
+        users
+      })
+    }catch(error){
+      return res.status(500).json({
+        message: ''
+      })
+    }
+  },
   login: async (req, res) => {
     const params = req.body;
 

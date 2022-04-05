@@ -1,7 +1,5 @@
 const { param } = require('express-validator');
-const {DataTypes} = require('sequelize')
-const db = require('../models')
-const Categories = require("../models/categories")(db.sequelize,DataTypes)
+const Categories = require("../models").Categories
 
 const controller = {
     deleteCategory: async(req,res) => {
