@@ -1,4 +1,4 @@
-const Activities = require('../models/activities.js')
+const Activities = require('../models').Activities
 const validator = require("validator");
 
 const createActivitie = async (req,res) => {

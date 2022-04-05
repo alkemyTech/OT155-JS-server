@@ -1,4 +1,4 @@
-const Organizations = require('../models/organizations');
+const Organizations = require('../models').Organizations;
 
 const getOrganizations = async (req, res) => {
   const { id } = req.params;
