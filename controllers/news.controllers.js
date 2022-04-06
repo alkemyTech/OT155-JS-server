@@ -1,7 +1,5 @@
 const validator = require("validator");
-const { DataTypes } = require("sequelize");
-const db = require("../models");
-const Entrie = require("../models/entries.js")(db.sequelize, DataTypes);
+const Entry = require("../models/entries.js").Entries;
 const News = require("../models/new.js");
 
 const getNews = async (req, res) => {
@@ -51,7 +49,7 @@ const createNew = async (req, res) => {
       });
     }
 
-    const newEntrie = await Entrie.create({
+    const newEntry = await Entry.create({
       name: params.name,
       content: params.content,
       image: params.image,
@@ -62,7 +60,7 @@ const createNew = async (req, res) => {
     return res.status(200).json({
       ok: true,
       message: "Entry created succssesfully. Type: news",
-      newEntrie,
+      newEntry,
     });
   } catch (err) {
     console.log(err);
