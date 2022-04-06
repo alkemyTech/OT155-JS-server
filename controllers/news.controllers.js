@@ -74,7 +74,7 @@ const createNew = async (req, res) => {
 
 const updateNew = async (req,res) => {
   const idNew = req.params.id;
-  const {title,content,image} = req.body
+  const {title,content,image,categoryId} = req.body
   try{
     const newEntry = await Entry.findByPk(idNew);
     if(!newEntry) {
@@ -87,7 +87,8 @@ const updateNew = async (req,res) => {
       {
         title: title || newEntry.title,
         content: content || newEntry.content,
-        image: image || newEntry.image
+        image: image || newEntry.image,
+        categoryId: categoryId || newEntry.categoryId,
       },  
       {returning:true,where:{id}}
     )
