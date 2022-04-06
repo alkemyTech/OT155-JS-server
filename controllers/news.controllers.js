@@ -1,9 +1,8 @@
 const validator = require("validator");
 const Entry = require("../models").Entries;
-const News = require("../models/new.js");
 
 const getNews = async (req, res) => {
-  const news = await News.findAll({
+  const news = await Entry.findAll({
     order: ["createdAt"],
     limit: 10,
   });
@@ -72,8 +71,43 @@ const createNew = async (req, res) => {
   }
 };
 
+
+const updateNew = async (req,res) => {
+  const idNew = req.params.id;
+  const {title,content,image} = req.body
+  try{
+    const newEntry = await Entry.findByPk(idNew);
+    if(!newEntry) {
+      return res.status(404).json({
+        ok:false,
+        message:'the entry does not exist',
+      })
+    }
+    const updateEntry = await Entry.update(
+      {
+        title: title || newEntry.title,
+        content: content || newEntry.content,
+        image: image || newEntry.image
+      },  
+      {returning:true,where:{id}}
+    )
+      res.json({
+        ok:true,
+        updateEntry
+      })
+  }catch{
+    console.log(err);
+    return res.status(500).json({
+      ok: false,
+      message: "(!) Something's gone wrong. Try again.",
+      error: err,
+    });
+  }
+}
+
 module.exports = {
   getNews,
   createNew,
+  updateNew
 };
 
