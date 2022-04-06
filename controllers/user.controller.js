@@ -1,5 +1,5 @@
 const validator = require("validator");
-const User = require("../models").Users;
+const User = require("../models").User;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -146,8 +146,7 @@ const controller = {
   
   delete: async(req,res) => {
     const { id } = req.params;
-    const user = await User.findByPk(id);
-
+    const user = await User.findByPk(id)
     try{
       if(user){
         await user.destroy({
@@ -164,6 +163,38 @@ const controller = {
         res.status(500).json({
           msg: "server error"
         })
+    }
+  },
+
+  edit: async(req,res) => {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    
+    const {firstName, lastName, email} = req.body;
+
+    try{
+      if(user){
+        const updateUserInfo = await user.update({
+          firstName,
+          lastName,
+          email
+        }, {
+          where: {
+            id : id
+          }
+        })
+
+        res.json(updateUserInfo)
+      } else {
+        res.status(404).json({
+          msg: "user not found"
+        })
+      }
+    }catch(error){
+      console.log(error)
+      res.status(500).json({
+        msg: "server error"
+      })
     }
   }
 };
