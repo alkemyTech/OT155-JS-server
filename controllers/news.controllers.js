@@ -1,9 +1,8 @@
 const validator = require("validator");
 const Entry = require("../models").Entries;
-const News = require("../models/new.js");
 
 const getNews = async (req, res) => {
-  const news = await News.findAll({
+  const news = await Entry.findAll({
     order: ["createdAt"],
     limit: 10,
   });

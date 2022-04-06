@@ -1,7 +1,20 @@
 const validator = require("validator");
-const User = require("../models").Users;
+const User = require("../models").User;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const {development} = require("../config/config")
+
+const createToken = (data) => {
+  return jwt.sign(
+    {
+      ...data
+    },
+    development.tokenKey,
+    {
+      expiresIn: "2h",
+    }
+  );
+}
 
 const controller = {
   getUser: async (req,res) => {
@@ -55,12 +68,8 @@ const controller = {
         return invalidPasswordResponse;
       }
 
-      const token = jwt.sign(
+      const token = createToken(
         { id: user.id, email: user.email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2d",
-        }
       );
 
       return res.status(200).json({
@@ -79,7 +88,7 @@ const controller = {
 
   register: async (req, res) => {
     const params = req.body;
-
+    console.log(params);
     try {
       const validateFirstName = validator.isEmpty(params.firstName);
       const validateLastName = validator.isEmpty(params.lastName);
@@ -122,12 +131,8 @@ const controller = {
         image: null,
         roleId: 1,
       });
-      const token = jwt.sign(
+      const token = createToken(
         { id: newUser.id, email: params.email },
-        process.env.TOKEN_KEY,
-        {
-          expiresIn: "2h",
-        }
       );
       const successfullResponse = res.status(200).json({
         status: "success",

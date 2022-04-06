@@ -2,9 +2,10 @@ const express = require("express");
 const router = express.Router();
 const userController = require("../controllers/user.controller")
 const {authRole} = require("../auth/authRole")
+const {validateJWT} = require("../Middlewares/validateJWT")
 
 /* GET users listing. */
-router.get('/',authRole,userController.getUser)
+router.get('/',validateJWT,authRole,userController.getUser)
 
 
 router.post("/login", userController.login)
