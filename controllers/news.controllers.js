@@ -1,5 +1,5 @@
 const validator = require("validator");
-const Entry = require("../models/entries.js").Entries;
+const Entry = require("../models").Entries;
 const News = require("../models/new.js");
 
 const getNews = async (req, res) => {
