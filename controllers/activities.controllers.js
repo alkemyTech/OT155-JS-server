@@ -1,7 +1,4 @@
-
-const {DataTypes} = require('sequelize')
-const db = require('../models/')
-const Activities = require("../models/activities.js")(db.sequelize,DataTypes);
+const Activities = require("../models").Activities;
 
 const validator = require("validator");
 
