@@ -12,6 +12,31 @@ const controller = {
       });
     }
   },
+  createMembers: async (req, res) => {
+    const { name, imageUrl } = req.body;
+    const validateName = typeof name;
+    if (validateName !== "string") {
+      const errorResponse = res.status(400).json({
+        message: "(!) You can only send text in the input name",
+      });
+      return errorResponse;
+    } else {
+      try {
+        const newMember = await Members.create({ name, imageUrl });
+        const successfullResponse = res.status(200).json({
+          status: "success",
+          value: true,
+          newMember: newMember,
+        });
+        return successfullResponse;
+      } catch (error) {
+        const errorResponse = res.status(400).json({
+          message: "(!) Something has gone wrong.",
+        });
+        return errorResponse;
+      }
+    }
+  },
 };
 
 module.exports = controller;
