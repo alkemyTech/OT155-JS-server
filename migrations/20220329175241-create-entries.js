@@ -14,7 +14,7 @@ module.exports = {
       content: {
         type: Sequelize.STRING
       },
-      image: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       categoryId: {

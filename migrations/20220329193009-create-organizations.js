@@ -14,7 +14,7 @@ module.exports = {
       phone: {
         type: Sequelize.STRING
       },
-      image: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       address: {
