@@ -184,11 +184,23 @@ const controller = {
           }
         })
 
-        res.json(updateUserInfo)
+        const token = jwt.sign({
+          id: id,
+          firstName: firstName,
+          lastName: lastName,
+          email: email
+        }, process.env.TOKEN_KEY, {
+          expiresIn: "2h"
+        })
+
+        res.json(updateUserInfo, token)
+      
       } else {
+      
         res.status(404).json({
           msg: "user not found"
         })
+      
       }
     }catch(error){
       console.log(error)
