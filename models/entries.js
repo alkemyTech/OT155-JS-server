@@ -16,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
   }
   Entries.init({
     name: DataTypes.STRING,
-    content: DataTypes.STRING,
+    content: DataTypes.TEXT,
     imageUrl: DataTypes.STRING,
     categoryId: DataTypes.INTEGER,
     type: DataTypes.STRING,
-    deleteAt: DataTypes.DATE
+    deletedAt: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Entries',

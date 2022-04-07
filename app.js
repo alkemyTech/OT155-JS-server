@@ -33,7 +33,7 @@ app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/entries", entriesRouter);
 app.use("/api/organizations", organizationsRouter);
-app.use("/categories", categoriesRouter);
+app.use("/api/categories", categoriesRouter);
 app.use("/api/testimonials", testimonialsRouter);
 app.use("/api/activities", activitiesRouter);
 app.use("/api/auth", authRouter);

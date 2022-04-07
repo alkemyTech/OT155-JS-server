@@ -5,5 +5,5 @@ const { createNew, getNews, getNew } = require('../controllers/entries.controlle
 router.get('/news', getNews);
 router.get('/news/:Id', getNew);
 
-router.post('/news/create-new', createNew);
+router.post('/news', createNew);
 module.exports = router;
