@@ -16,6 +16,11 @@ const categoriesRouter = require("./routes/categories");
 const authRouter = require("./routes/auth");
 const membersRouter = require("./routes/members");
 
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir : '/tmp/'
+}));
+
 const app = express();
 app.use(cors());
 
