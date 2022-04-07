@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       content: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT('long')
       },
-      image: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       categoryId: {
@@ -29,7 +29,7 @@ module.exports = {
       type: {
         type: Sequelize.STRING
       },
-      deleteAt: {
+      deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {

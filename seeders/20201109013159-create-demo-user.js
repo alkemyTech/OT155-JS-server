@@ -12,7 +12,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "ym8nGyaf",
           roleId: 1,
-          image: "https://robohash.org/natusenimrem.png?size=250x250&set=set1",
+          imageUrl: "https://robohash.org/natusenimrem.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -23,7 +23,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "h7twf6A4",
           roleId: 1,
-          image:
+          imageUrl:
             "https://robohash.org/voluptasquisapiente.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -35,7 +35,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "5zGPJ4SA",
           roleId: 1,
-          image:
+          imageUrl:
             "https://robohash.org/omnismollitiapraesentium.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -47,7 +47,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "VhmweyGg",
           roleId: 1,
-          image:
+          imageUrl:
             "https://robohash.org/voluptatemharumrem.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -59,7 +59,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "rQxVxngW",
           roleId: 1,
-          image: "https://robohash.org/rerumestsed.png?size=250x250&set=set1",
+          imageUrl: "https://robohash.org/rerumestsed.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -70,7 +70,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "jUXkdFWC",
           roleId: 1,
-          image:
+          imageUrl:
             "https://robohash.org/utautemdelectus.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -82,7 +82,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "DAbd6hek",
           roleId: 1,
-          image:
+          imageUrl:
             "https://robohash.org/voluptatuminciduntratione.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -94,7 +94,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "hFkFDJp4",
           roleId: 1,
-          image:
+          imageUrl:
             "https://robohash.org/voluptatemdoloreseligendi.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -106,7 +106,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "BFT2ft8v",
           roleId: 1,
-          image:
+          imageUrl:
             "https://robohash.org/accusantiuminet.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -118,7 +118,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "Cr48hzcY",
           roleId: 1,
-          image: "https://robohash.org/quiainrerum.png?size=250x250&set=set1",
+          imageUrl: "https://robohash.org/quiainrerum.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -129,7 +129,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "zPszHVs8",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/eaassumendaminus.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -141,7 +141,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "8npFYWRW",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/accusantiumetsit.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -153,7 +153,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "mf6BttAv",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/aconsequaturillum.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -165,7 +165,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "mQypWayq",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/quaequaeratdicta.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -177,7 +177,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "UR7xjMeY",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/suntseddolorum.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -189,7 +189,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "FcfYG9qw",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/omnisdolorumfacere.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -201,7 +201,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "Txcwuvud",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/deseruntetprovident.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -213,7 +213,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "6HUdTKh8",
           roleId: 2,
-          image: "https://robohash.org/autetaut.png?size=250x250&set=set1",
+          imageUrl: "https://robohash.org/autetaut.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
@@ -224,7 +224,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "y3Ttb8rX",
           roleId: 2,
-          image:
+          imageUrl:
             "https://robohash.org/temporibusnostrumrepudiandae.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
@@ -236,7 +236,7 @@ module.exports = {
           // Important: Password not encrypted yet!
           password: "wCXckmbz",
           roleId: 2,
-          image: "https://robohash.org/utautofficia.png?size=250x250&set=set1",
+          imageUrl: "https://robohash.org/utautofficia.png?size=250x250&set=set1",
           createdAt: new Date(),
           updatedAt: new Date(),
         },
