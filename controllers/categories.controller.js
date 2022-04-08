@@ -5,12 +5,13 @@ const controller = {
     deleteCategory: async(req,res) => {
 
         try{
-        const { id } = req.params;
-        const deleteCategory = await Categories.destroy({
-            where:{
-                id: id
-            }
-        })
+            const { id } = req.params;
+            const deleteCategory = await Categories.destroy({
+                where:{
+                    id
+                }
+            })
+            res.json({category:deleteCategory})
         }catch(error){
             res.status(404).json({
                 msg: `Category does not exist`
