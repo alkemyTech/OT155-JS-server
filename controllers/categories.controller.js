@@ -8,7 +8,7 @@ const controller = {
             const { id } = req.params;
             const deleteCategory = await Categories.destroy({
                 where:{
-                    id
+                    id: id
                 }
             })
             res.json({category:deleteCategory})

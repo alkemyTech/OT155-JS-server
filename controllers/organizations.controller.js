@@ -21,7 +21,7 @@ const getOrganizations = async (req, res) => {
     });
   }catch{
     res.status(500).json({
-
+      msg:''
     })
   }
   
