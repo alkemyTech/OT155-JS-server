@@ -36,7 +36,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload({
   useTempFiles : true,
   tempFileDir : '/tmp/',
-  debug: true
 }));
 
 app.use("/api", indexRouter);

@@ -13,6 +13,6 @@ s3.listObjects(bucketParams, function (err, data) {
   if (err) {
     console.log('Error', err);
   } else {
-    console.log('Success', data.Contents.filter(item => item.Key.includes('pokeball.png')));
+    console.log('Success', data);
   }
 });
