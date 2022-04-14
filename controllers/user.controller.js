@@ -129,6 +129,29 @@ const controller = {
       return errorResponse;
     }
   },
+  
+  delete: async(req,res) => {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+
+    try{
+      if(user){
+        await user.destroy({
+          where: {
+            id: id
+          }
+        })
+      } else {
+        res.status(404).json({
+          msg: "No user with that id"
+        })
+      }
+    }catch(error){
+        res.status(500).json({
+          msg: "server error"
+        })
+    }
+  }
 };
 
 module.exports = controller;
