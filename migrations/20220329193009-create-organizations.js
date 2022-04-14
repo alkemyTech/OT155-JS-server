@@ -23,6 +23,9 @@ module.exports = {
       welcomeText: {
         type: Sequelize.STRING
       },
+      socialMedia: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

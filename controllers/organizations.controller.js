@@ -5,7 +5,7 @@ const getOrganizations = async (req, res) => {
   const data = await Organizations.findByPk(id);
 
   if (data) {
-    const { name, image, phone, address, welcomeText } = data;
+    const { name, image, phone, address, welcomeText, socialMedia } = data;
 
     res.json({
       name,
@@ -13,6 +13,7 @@ const getOrganizations = async (req, res) => {
       phone,
       address,
       welcomeText,
+      socialMedia
     });
   } else {
     res.status(404).json({
