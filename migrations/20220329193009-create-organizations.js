@@ -24,7 +24,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       socialMedia: {
-        type: Sequelize.STRING
+        type: Sequelize.JSON
       },
       createdAt: {
         allowNull: false,
