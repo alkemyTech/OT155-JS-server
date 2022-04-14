@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       firstName: DataTypes.STRING,
       lastName: DataTypes.STRING,
       email: { type: DataTypes.STRING, allowNull: false, unique: true },
-      image: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
+      imageUrl: { type: DataTypes.STRING, allowNull: true, defaultValue: null },
       password: DataTypes.STRING,
       roleId: DataTypes.INTEGER,
       deletedAt: { type: DataTypes.DATE, allowNull: true, defaultValue: null },

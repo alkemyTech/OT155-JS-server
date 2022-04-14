@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Activities', {
+    await queryInterface.createTable('Contacts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -11,28 +11,29 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
-      imageUrl: {
+      phone: {
         type: Sequelize.STRING
       },
-      content: {
-        type: Sequelize.TEXT('long')
+      email: {
+        type: Sequelize.STRING
+      },
+      message: {
+        type: Sequelize.STRING
       },
       deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP()'),
         allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()'),
         allowNull: false,
         type: Sequelize.DATE
       }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Activities');
+    await queryInterface.dropTable('Contacts');
   }
 };

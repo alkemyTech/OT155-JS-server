@@ -12,18 +12,24 @@ module.exports = {
         type: Sequelize.STRING
       },
       content: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT('long')
       },
-      image: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       categoryId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
       },
       type: {
         type: Sequelize.STRING
       },
-      deleteAt: {
+      deletedAt: {
         type: Sequelize.DATE
       },
       createdAt: {

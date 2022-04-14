@@ -18,7 +18,24 @@ const controller = {
         }
 
 
-    }
+    },
+    // postCategory: async(req,res) => {
+    //     const { name, description } = req.body;
+    //     try{
+    //         const newCategory = await Categories.create({
+    //             name,
+    //             description
+    //         })
+    //         res.status(201).json({
+    //             msg: `Category created successfully`,
+    //             newCategory
+    //         })
+    //     }catch(error){
+    //         res.status(500).json({
+    //             msg: `Something went wrong`
+    //         })
+    //     }
+    // }
 }
 
 

@@ -8,12 +8,13 @@ require("dotenv").config();
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
+const entriesRouter = require("./routes/entries")
 const organizationsRouter = require("./routes/organizations");
 const testimonialsRouter = require("./routes/testimonials");
 const activitiesRouter = require("./routes/activities");
-const newsRouter = require('./routes/news');
-const categoriesRouter = require('./routes/categories')
-const authRouter = require("./routes/auth")
+const categoriesRouter = require('./routes/categories');
+const authRouter = require("./routes/auth");
+const membersRouter = require("./routes/members");
 const contactsRouter = require("./routes/contacts")
 
 const app = express();
@@ -31,13 +32,14 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
-app.use("/api/news", newsRouter);
+app.use("/api/entries", entriesRouter);
 app.use("/api/organizations", organizationsRouter);
-app.use('/categories', categoriesRouter)
+app.use("/api/categories", categoriesRouter);
 app.use("/api/testimonials", testimonialsRouter);
 app.use("/api/activities", activitiesRouter);
-app.use("/api/auth", authRouter)
-app.use("/api/contacts", contactsRouter)
+app.use("/api/auth", authRouter);
+app.use("/api/members", membersRouter);
+app.use("/api/contacts", contactsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
