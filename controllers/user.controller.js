@@ -167,7 +167,7 @@ const controller = {
   },
 
   edit: async(req,res) => {
-    const { id } = req.params;
+    const { id, roleId } = req.user;
     const user = await User.findByPk(id);
     
     const {firstName, lastName, email} = req.body;
@@ -188,7 +188,8 @@ const controller = {
           id: id,
           firstName: firstName,
           lastName: lastName,
-          email: email
+          email: email,
+          roleId: roleId
         }, process.env.TOKEN_KEY, {
           expiresIn: "2h"
         })
