@@ -1,5 +1,5 @@
-const User = require('../models/user')
 
+const User = require('../models/user')
 
 const getCurrentUser = async(req,res) => {
     const { id } = req.user;
@@ -17,9 +17,7 @@ const getCurrentUser = async(req,res) => {
         throw new Error('User not logged in');
     }
 
-
 }
-
 module.exports = {
     getCurrentUser
 }

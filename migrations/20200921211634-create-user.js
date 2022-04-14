@@ -20,7 +20,7 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      image: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       roleId: {
