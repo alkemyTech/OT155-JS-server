@@ -6,7 +6,7 @@ const Categories = require("../models/categories")(db.sequelize, DataTypes)
 const controller = {
   getAllCategories: async (req, res) => {
     try {
-      const categories = await Categories.findAll();
+      const categories = await Categories.findAll({attributes: ['name']});
       res.json({categories});
     } catch (error) {
       res.status(500).json({
