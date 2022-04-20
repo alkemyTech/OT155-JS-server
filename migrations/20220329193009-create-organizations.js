@@ -14,13 +14,22 @@ module.exports = {
       phone: {
         type: Sequelize.STRING
       },
-      image: {
+      imageUrl: {
         type: Sequelize.STRING
       },
       address: {
         type: Sequelize.STRING
       },
       welcomeText: {
+        type: Sequelize.STRING
+      },
+      urlFacebook: {
+        type: Sequelize.STRING
+      },
+      urlLinkedin: {
+        type: Sequelize.STRING
+      },
+      urlInstagram: {
         type: Sequelize.STRING
       },
       createdAt: {

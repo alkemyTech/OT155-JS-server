@@ -1,6 +1,4 @@
-const { DataTypes } = require("sequelize");
-const db = require("../models");
-const Testimonials = require("../models/testimonials")(db.sequelize, DataTypes);
+const Testimonials = require("../models").Testimonials;
 
 const testimonialsMethods = {
   createTestimonial: async (req, res) => {

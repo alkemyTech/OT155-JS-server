@@ -1,4 +1,4 @@
-export const authRole =  (req,res,next) => {
+const authRole =  (req,res,next) => {
     if(!req.user){
         return res.status(500).json({
             error:'you need a token to validate the role'
@@ -12,3 +12,4 @@ export const authRole =  (req,res,next) => {
     next()
 }
 
+module.exports = {authRole}

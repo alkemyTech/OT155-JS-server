@@ -1,11 +1,11 @@
-const Organizations = require('../models/organizations');
+const Organizations = require('../models').Organizations;
 
 const getOrganizations = async (req, res) => {
   const { id } = req.params;
   const data = await Organizations.findByPk(id);
 
   if (data) {
-    const { name, image, phone, address, welcomeText } = data;
+    const { name, image, phone, address, welcomeText, urlFacebook, urlLinkedin, urlInstagram } = data;
 
     res.json({
       name,
@@ -13,6 +13,9 @@ const getOrganizations = async (req, res) => {
       phone,
       address,
       welcomeText,
+      urlFacebook,
+      urlLinkedin,
+      urlInstagram,
     });
   } else {
     res.status(404).json({
