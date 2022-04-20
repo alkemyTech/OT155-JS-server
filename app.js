@@ -10,7 +10,7 @@ const methodOverride = require("method-override");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
-const entriesRouter = require("./routes/entries")
+const entriesRouter = require("./routes/entries");
 const organizationsRouter = require("./routes/organizations");
 const testimonialsRouter = require("./routes/testimonials");
 
