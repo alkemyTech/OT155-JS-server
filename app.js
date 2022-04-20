@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
 require("dotenv").config();
+const fileUpload = require('express-fileupload');
 const methodOverride = require("method-override");
 
 const indexRouter = require("./routes/index");
@@ -12,10 +13,14 @@ const usersRouter = require("./routes/users");
 const entriesRouter = require("./routes/entries");
 const organizationsRouter = require("./routes/organizations");
 const testimonialsRouter = require("./routes/testimonials");
+
 const activitiesRouter = require("./routes/activities");
-const categoriesRouter = require("./routes/categories");
+const categoriesRouter = require('./routes/categories');
 const authRouter = require("./routes/auth");
 const membersRouter = require("./routes/members");
+const contactsRouter = require("./routes/contacts");
+const uploadRouter = require('./routes/upload');
+
 
 const app = express();
 app.use(cors());
@@ -31,6 +36,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
+app.use(fileUpload({
+  useTempFiles : true,
+  tempFileDir : '/tmp/',
+}));
+
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/entries", entriesRouter);
@@ -40,6 +50,10 @@ app.use("/api/testimonials", testimonialsRouter);
 app.use("/api/activities", activitiesRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/members", membersRouter);
+app.use("/api/contacts", contactsRouter);
+app.use('/api/upload', uploadRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
