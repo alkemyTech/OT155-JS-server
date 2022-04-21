@@ -58,7 +58,7 @@ const updateActivity = async (req, res) => {
           });
     }
 
-    const updateActivity = await Activities.update(
+    await Activities.update(
         { name: params.name, image: params.image, concept: params.concept },
         { where: { id: params.id } }
       );
