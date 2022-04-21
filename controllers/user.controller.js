@@ -1,5 +1,7 @@
 const validator = require("validator");
-const User = require("../models").User;
+const { DataTypes } = require("sequelize")
+const db = require("../models");
+const User = require("../models/user")(db.sequelize, DataTypes)
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
