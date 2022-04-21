@@ -4,6 +4,8 @@ const categoriesController = require("../controllers/categories.controller")
 const { check } = require('express-validator');
 const { validateFields } = require('../Middlewares/validateFields');
 
+router.get("/", categoriesController.getAllCategories)
+
 router.delete("/delete/:id", categoriesController.deleteCategory)
 router.post("/",
 [
