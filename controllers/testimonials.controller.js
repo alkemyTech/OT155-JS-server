@@ -38,6 +38,7 @@ const testimonialsMethods = {
         value: true,
         Message: `Testimonial ${testimonialExist.name} has been deleted`,
       });
+      return successfullResponse
     } else {
       const errorResponse = res.status(400).json({
         message:

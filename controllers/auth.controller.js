@@ -6,17 +6,20 @@ const getCurrentUser = async(req,res) => {
     const data = await User.findByPk(id);
 
     if(data){
-        const {firstName, lastName, email, id} = data;
-        res.json({
-            firstName,
-            lastName,
-            email,
-            id
-        })
-    } else {
-        throw new Error('User not logged in');
+      const {firstName, lastName, email, id} = data;
+      return res.json({
+          firstName,
+          lastName,
+          email,
+          id
+      })
     }
-
+      throw new Error('User not logged in');
+    }catch(err) {
+        res.status(500).json({
+            message:err.message
+        })
+    }
 }
 module.exports = {
     getCurrentUser
