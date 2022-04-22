@@ -94,8 +94,35 @@ const createNew = async (req, res) => {
   }
 };
 
+const deleteNew = async (req,res) => {
+  const id = req.params.id;
+  try{
+    const entry = await Entry.findOne({where: {id}})
+    if(!entry){
+      return res.status(404).json({
+        message:'Novelty not found'
+      })
+    }
+    const deleteEntry = await Entry.destroy({
+      where: {
+        id
+      }
+    })
+    res.json({
+      message:deleteEntry
+    })
+  }catch(err) {
+    res.status(500).json({
+      ok: false,
+      message: "(!) Something's gone wrong. Try again.",
+      error: err,
+    })
+  }
+}
+
 module.exports = {
   createNew,
   getNew,
   getNews,
+  deleteNew
 };
