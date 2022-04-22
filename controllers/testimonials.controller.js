@@ -1,6 +1,20 @@
 const Testimonials = require("../models").Testimonials;
 
 const testimonialsMethods = {
+  getTestimonials: async (req, res) => {
+    try {
+      let testimonials = await Testimonials.findAll({});
+  
+      res.json({ testimonials });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        ok: false,
+        message: '(!) Something has gone wrong',
+        error,
+      });
+    }
+  },
   createTestimonial: async (req, res) => {
     const { name, image, content } = req.body;
     try {
