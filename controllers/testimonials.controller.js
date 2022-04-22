@@ -38,6 +38,38 @@ const testimonialsMethods = {
         value: true,
         Message: `Testimonial ${testimonialExist.name} has been deleted`,
       });
+      return successfullResponse
+    } else {
+      const errorResponse = res.status(400).json({
+        message:
+          "(!) There are not Testimonials registered with the params sent",
+      });
+      return errorResponse;
+    }
+  },
+  updateTestimonial: async (req, res) => {
+    const { id } = req.params;
+    const { name, image, content } = req.body;
+    const testimonialExist = await Testimonials.findOne({
+      where: { id },
+    });
+    if (testimonialExist) {
+      const updateTestimonial = {
+        name,
+        image,
+        content,
+      };
+      await Testimonials.update(updateTestimonial, {
+        where: {
+          id,
+        },
+      });
+      const successfullResponse = res.status(200).json({
+        status: "success",
+        data: updateTestimonial,
+        value: true,
+        Message: `Testimonial ${testimonialExist.id} has been updated`,
+      });
     } else {
       const errorResponse = res.status(400).json({
         message:

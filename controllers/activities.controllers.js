@@ -2,6 +2,47 @@ const Activities = require("../models").Activities;
 
 const validator = require("validator");
 
+const getAllActivities = async (req, res) => {
+  try {
+    const activities = await Activities.findAll();
+    res.json({
+      status: "success",
+      value: true,
+      activities,
+    });
+  } catch (err) {
+    res.status(500).json({ message: "(!) Something has gone wrong. " });
+  }
+};
+
+const getActivity = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const activity = await Activities.findOne({ where: { id } });
+
+    if (!activity) {
+      return res.status(404).json({
+        ok: false,
+        message: "(!) Error. Activity not found.",
+      });
+    }
+
+    return res.status(200).json({
+      ok: true,
+      message: "Activity found successfully",
+      activity,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      ok: false,
+      message: "(!) Something's gone wrong. Try again.",
+      error: err,
+    });
+  }
+};
+
 const createActivitie = async (req, res) => {
   const { name, image, content } = req.body;
 
@@ -49,31 +90,60 @@ const updateActivity = async (req, res) => {
       });
     }
 
-    const activity = await Activities.findOne({where: {id: params.id}})
+    const activity = await Activities.findOne({ where: { id: params.id } });
 
-    if(!activity){
-        return res.status(404).json({
-            ok: false,
-            message: "(!) Error. Activity not found.",
-          });
+    if (!activity) {
+      return res.status(404).json({
+        ok: false,
+        message: "(!) Error. Activity not found.",
+      });
     }
 
-    const updateActivity = await Activities.update(
-        { name: params.name, image: params.image, concept: params.concept },
-        { where: { id: params.id } }
-      );
+    await Activities.update(
+      { name: params.name, image: params.image, concept: params.concept },
+      { where: { id: params.id } }
+    );
 
-    const updatedActivity = await Activities.findOne({where: {id: params.id}})
-  
-      return res.status(200).json({
-        ok: true,
-        message: "Activity updated successfully",
-        updatedActivity
-       
-      });
-    
+    const updatedActivity = await Activities.findOne({
+      where: { id: params.id },
+    });
+
+    return res.status(200).json({
+      ok: true,
+      message: "Activity updated successfully",
+      updatedActivity,
+    });
   } catch (err) {
-      console.log(err)
+    console.log(err);
+    return res.status(500).json({
+      ok: false,
+      message: "(!) Something's gone wrong. Try again.",
+      error: err,
+    });
+  }
+};
+
+const deleteActivity = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const activity = await Activities.findOne({ where: { id } });
+
+    if (!activity) {
+      return res.status(404).json({
+        ok: false,
+        message: "(!) Error. Activity not found.",
+      });
+    }
+
+    await Activities.destroy({ where: { id } });
+
+    return res.status(204).json({
+      ok: true,
+      message: "Activity deleted successfully",
+    });
+  } catch (err) {
+    console.log(err);
     return res.status(500).json({
       ok: false,
       message: "(!) Something's gone wrong. Try again.",
@@ -83,6 +153,9 @@ const updateActivity = async (req, res) => {
 };
 
 module.exports = {
+  getAllActivities,
+  getActivity,
   createActivitie,
-  updateActivity
+  updateActivity,
+  deleteActivity,
 };
