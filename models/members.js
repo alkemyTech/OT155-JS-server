@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   Members.init(
     {
       name: DataTypes.STRING,
+      role: DataTypes.STRING,
       imageUrl: DataTypes.STRING,
     },
     {
@@ -23,4 +24,3 @@ module.exports = (sequelize, DataTypes) => {
   );
   return Members;
 };
-

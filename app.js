@@ -20,6 +20,7 @@ const authRouter = require("./routes/auth");
 const membersRouter = require("./routes/members");
 const contactsRouter = require("./routes/contacts");
 const uploadRouter = require('./routes/upload');
+const slideRouter = require('./routes/slide');
 
 
 const app = express();
@@ -52,6 +53,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/members", membersRouter);
 app.use("/api/contacts", contactsRouter);
 app.use('/api/upload', uploadRouter);
+app.use('/api/slide', slideRouter);
 
 
 

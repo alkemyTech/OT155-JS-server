@@ -11,6 +11,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
+      role: {
+        type: Sequelize.STRING,
+      },
       imageUrl: {
         type: Sequelize.STRING,
       },
@@ -28,4 +31,3 @@ module.exports = {
     await queryInterface.dropTable("Members");
   },
 };
-

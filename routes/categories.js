@@ -7,7 +7,6 @@ const {validateJWT} = require("../Middlewares/validateJWT")
 const {authRole} = require("../auth/authRole")
 
 router.get("/", categoriesController.getAllCategories)
-
 router.delete("/delete/:id", categoriesController.deleteCategory)
 router.post("/",
 [

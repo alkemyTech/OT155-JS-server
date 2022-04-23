@@ -65,10 +65,12 @@ const controller = {
         });
       }
 
+
       const updateCategory = await Categories.update(
         { name: params.name, description: params.description },
         { where: { id: params.id } }
       );
+
 
       if(!updateCategory){
         return res.status(500).json({
