@@ -169,41 +169,48 @@ const controller = {
   },
 
   edit: async(req,res) => {
-    const { id, roleId } = req.user;
+    const { id } = req.params;
     const user = await User.findByPk(id);
     
-    const {firstName, lastName, email} = req.body;
+    const {firstName, lastName, email, roleId} = req.body;
 
+    console.log("el rol",roleId)
+    
+    const token = jwt.sign({
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      roleId: roleId
+    }, process.env.TOKEN_KEY, {
+      expiresIn: "2h"
+    })
+    
     try{
       if(user){
         const updateUserInfo = await user.update({
           firstName,
           lastName,
-          email
+          email,
+          roleId
         }, {
           where: {
             id : id
           }
         })
 
-        const token = jwt.sign({
-          id: id,
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          roleId: roleId
-        }, process.env.TOKEN_KEY, {
-          expiresIn: "2h"
-        })
+        const newUserData = res.status(200).json({
+          status: "success",
+          value: true,
+          user: updateUserInfo,
+          jwt: token,
+        });
 
-        res.json(updateUserInfo, token)
-      
+        return newUserData;
       } else {
-      
         res.status(404).json({
-          msg: "user not found"
-        })
-      
+          msg: "user not found",
+        });
       }
     }catch(error){
       console.log(error)

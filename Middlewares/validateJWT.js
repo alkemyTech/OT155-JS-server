@@ -3,7 +3,7 @@ const User = require('../models/').User;
 
 const validateJWT = async (req, res, next) => {
   const token = req.header('Authorization');
-
+  console.log(token);
   if (!token) {
     return res.status(401).json({
       msg: 'There is no token in the request',
