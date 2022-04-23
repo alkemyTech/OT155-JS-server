@@ -13,5 +13,5 @@ router.post("/register", userController.register)
 
 
 router.delete("/:id", validateJWT, userController.delete)
-router.put("/:id", validateJWT, userController.edit)
+router.put("/:id", userController.edit)
 module.exports = router;
