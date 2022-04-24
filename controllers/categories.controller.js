@@ -4,9 +4,29 @@ const { DataTypes } = require("sequelize");
 const Categories = require("../models/categories")(db.sequelize, DataTypes);
 
 const controller = {
+  getCategory: async (req,res) => {
+    try{
+      const category = await Categories.findByPk(req.params.id);
+      if(!category){
+        return res.status(404).json({
+          ok: false,
+          message: '(!) Category does not exist',
+        })
+      }
+      res.json({
+        status: 'success',
+        value: true,
+        new: category,
+      })
+    }catch{
+      return res.status(500).json(
+        { message: '(!) Something has gone wrong' }
+      )
+    }
+  },
   getAllCategories: async (req, res) => {
     try {
-      const categories = await Categories.findAll({ attributes: ["name"] });
+      const categories = await Categories.findAll({});
       res.json({ categories });
     } catch (error) {
       res.status(500).json({
@@ -22,6 +42,7 @@ const controller = {
           id: id,
         },
       });
+      res.json({deleteCategory})
     } catch (error) {
       res.status(404).json({
         msg: `Category does not exist`,
@@ -47,7 +68,7 @@ const controller = {
   },
   updateCategory: async (req, res) => {
     const params = req.body;
-
+    console.log(params)
     if (!params.id || !params.name || !params.description) {
       return res.status(400).json({
         ok: false,
