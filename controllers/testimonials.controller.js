@@ -1,6 +1,24 @@
 const Testimonials = require("../models").Testimonials;
 
 const testimonialsMethods = {
+  getTestimonial: async (req, res) => {
+    try {
+      const testimonial = await Testimonials.findByPk(req.params.Id);
+      if(!testimonial){
+        return res.status(404).json({
+          ok: false,
+          message: '(!) Activity does not exist',
+        });
+        }
+      return res.json({
+        status: 'success',
+        value: true,
+        new: testimonial,
+      });
+    } catch {
+      return res.status(500).json({ message: '(!) Something has gone wrong' });
+    }
+  },
   getTestimonials: async (req, res) => {
     try {
       let testimonials = await Testimonials.findAll({});
