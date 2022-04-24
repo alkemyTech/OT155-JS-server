@@ -4,7 +4,6 @@ const Entries = require('../models').Entries;
 const getNews = async (req, res) => {
   try {
     let news = await Entries.findAll({
-      order: ['createdAt'],
       limit: 10,
     });
 
