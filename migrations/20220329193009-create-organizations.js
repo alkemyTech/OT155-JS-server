@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       welcomeText: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT('long')
       },
       urlFacebook: {
         type: Sequelize.STRING,
