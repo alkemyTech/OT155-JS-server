@@ -96,13 +96,13 @@ const createNew = async (req, res) => {
 const deleteNew = async (req,res) => {
   const id = req.params.id;
   try{
-    const entry = await Entry.findOne({where: {id}})
+    const entry = await Entries.findOne({where: {id}})
     if(!entry){
       return res.status(404).json({
         message:'Novelty not found'
       })
     }
-    const deleteEntry = await Entry.destroy({
+    const deleteEntry = await Entries.destroy({
       where: {
         id
       }
