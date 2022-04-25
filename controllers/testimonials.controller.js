@@ -3,7 +3,7 @@ const Testimonials = require("../models").Testimonials;
 const testimonialsMethods = {
   getTestimonial: async (req, res) => {
     try {
-      const testimonial = await Testimonials.findByPk(req.params.Id);
+      const testimonial = await Testimonials.findByPk(req.params.id);
       if(!testimonial){
         return res.status(404).json({
           ok: false,
@@ -102,6 +102,7 @@ const testimonialsMethods = {
         value: true,
         Message: `Testimonial ${testimonialExist.id} has been updated`,
       });
+      return successfullResponse
     } else {
       const errorResponse = res.status(400).json({
         message:
