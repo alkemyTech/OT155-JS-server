@@ -53,7 +53,7 @@ const createActivitie = async (req, res) => {
         .json({ message: "Name and Content fields are required" });
 
     const newActivities = await Activities.create({
-      title: name,
+      name,
       image,
       content,
     });
@@ -71,7 +71,7 @@ const updateActivity = async (req, res) => {
   const params = req.body;
 
   try {
-    if (!params.id || !params.name || !params.image || !params.concept) {
+    if (!params.id || !params.name || !params.content) {
       return res.status(400).json({
         ok: false,
         message: "(!) Error. Missing fields.",
@@ -80,10 +80,10 @@ const updateActivity = async (req, res) => {
 
     validate_id = validator.isEmpty(params.id);
     validate_name = validator.isEmpty(params.name);
-    validate_image = validator.isEmpty(params.image);
-    validate_concept = validator.isEmpty(params.concept);
+    // validate_image = validator.isEmpty(params.image);
+    validate_content = validator.isEmpty(params.content);
 
-    if (validate_id || validate_name || validate_image || validate_concept) {
+    if (validate_id || validate_name || validate_content) {
       return res.status(400).json({
         ok: false,
         message: "(!) Error. Some fields are empty.",
@@ -98,9 +98,8 @@ const updateActivity = async (req, res) => {
         message: "(!) Error. Activity not found.",
       });
     }
-
     await Activities.update(
-      { name: params.name, image: params.image, concept: params.concept },
+      { name: params.name, image: params.image, content: params.content },
       { where: { id: params.id } }
     );
 

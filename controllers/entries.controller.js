@@ -44,7 +44,7 @@ const createNew = async (req, res) => {
     if (
       !params.name ||
       !params.content ||
-      !params.imageUrl ||
+      // !params.imageUrl ||
       !params.categoryId
     ) {
       return res.status(400).json({
@@ -55,13 +55,13 @@ const createNew = async (req, res) => {
 
     validate_name = validator.isEmpty(params.name);
     validate_content = validator.isEmpty(params.content);
-    validate_imageUrl = validator.isEmpty(params.imageUrl);
+    // validate_imageUrl = validator.isEmpty(params.imageUrl);
     validate_categoryId = validator.isEmpty(params.categoryId);
 
     if (
       validate_name ||
       validate_content ||
-      validate_imageUrl ||
+      // validate_imageUrl ||
       validate_categoryId
     ) {
       return res.status(400).json({
@@ -119,9 +119,62 @@ const deleteNew = async (req,res) => {
   }
 }
 
+const updateEntry = async (req,res) => {
+  const id = req.params.id
+  const {name,content, categoryId, imageUrl} = req.body
+  try {
+    if (!name || !content) {
+      return res.status(400).json({
+        ok: false,
+        message: "(!) Error. Missing fields.",
+      });
+    }
+
+    validate_name = validator.isEmpty(name);
+    // validate_image = validator.isEmpty(image);
+    validate_content = validator.isEmpty(content);
+    if (validate_name || validate_content) {
+      return res.status(400).json({
+        ok: false,
+        message: "(!) Error. Some fields are empty.",
+      });
+    }
+    const entries = await Entries.findOne({ where: { id } });
+
+    if (!entries) {
+      return res.status(404).json({
+        ok: false,
+        message: "(!) Error. entries not found.",
+      });
+    }
+    await Entries.update(
+      { name,imageUrl, content, categoryId, },
+      { where: { id } }
+    );
+
+    const updatedEntry = await Entries.findOne({
+      where: { id },
+    });
+
+    return res.status(200).json({
+      ok: true,
+      message: "Activity updated successfully",
+      updatedEntry,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      ok: false,
+      message: "(!) Something's gone wrong. Try again.",
+      error: err,
+    });
+  }
+}
+
 module.exports = {
   createNew,
   getNew,
   getNews,
-  deleteNew
+  deleteNew,
+  updateEntry
 };
